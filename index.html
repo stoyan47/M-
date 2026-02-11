@@ -14,7 +14,7 @@
             align-items: center;
             height: 100vh;
             background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
-            font-family: 'Comfortaa', cursive; /* Променен шрифт */
+            font-family: 'Comfortaa', cursive;
             overflow: hidden;
             text-align: center;
         }
@@ -39,7 +39,6 @@
             flex-wrap: wrap;
         }
 
-        /* Стилизиране на бутоните */
         .btn {
             border: none;
             padding: 15px 30px;
@@ -48,36 +47,34 @@
             cursor: pointer;
             transition: all 0.2s ease;
             font-weight: bold;
-            font-family: 'Comfortaa', cursive; /* Променен шрифт и за бутоните */
+            font-family: 'Comfortaa', cursive;
         }
 
-        #yesBtn {
-            background-color: #ff4d6d;
-            color: white;
-            z-index: 100;
-        }
+        #yesBtn { background-color: #ff4d6d; color: white; z-index: 100; }
+        #noBtn { background-color: #888; color: white; }
 
-        #noBtn {
-            background-color: #888;
-            color: white;
-        }
-
-        /* Прозорецът-сърце */
+        /* Прозорецът-сърце с центриран текст */
         #loveWindow {
             display: none;
             position: fixed;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 300px;
-            height: 300px;
+            width: 350px;
+            height: 350px;
             background-color: #ff4d6d;
-            /* **ПРОМЕНЕН КЛАСИЧЕСКИ SVG ПЪТ ЗА СЪРЦЕ** */
-            clip-path: url(#heart-shape); /* Препраща към SVG дефиниция */
+            clip-path: url(#heart-shape);
+            
+            /* Центриране на текста вътре */
+            display: none; 
+            flex-direction: column;
             justify-content: center;
             align-items: center;
+            padding-bottom: 40px; /* Леко отместване нагоре, за да изглежда визуално центрирано в "корема" на сърцето */
+            box-sizing: border-box;
+            
             color: white;
-            font-size: 2rem;
+            font-size: 1.8rem;
             font-weight: bold;
             z-index: 1000;
             animation: beat 0.8s infinite alternate, fadeIn 0.5s;
@@ -91,7 +88,6 @@
             from { opacity: 0; } to { opacity: 1; }
         }
 
-        /* Летящи сърца от предишния код */
         .heart-bg {
             position: absolute;
             color: #ff4d6d;
