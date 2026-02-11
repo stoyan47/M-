@@ -3,13 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Специален въпрос ❤️</title>
+    <title>За теб ❤️</title>
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        * {
-            box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
-        }
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
         body {
             margin: 0;
@@ -32,15 +29,9 @@
             z-index: 10;
             width: 90%;
             max-width: 400px;
-            transition: all 0.3s ease;
         }
 
-        h1 { 
-            color: #d63384; 
-            font-size: 1.8rem; 
-            margin-bottom: 30px;
-            line-height: 1.4;
-        }
+        h1 { color: #d63384; font-size: 1.8rem; margin-bottom: 30px; }
 
         .buttons {
             display: flex;
@@ -59,15 +50,14 @@
             transition: all 0.2s ease;
             font-weight: bold;
             font-family: 'Comfortaa', cursive;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
 
         #yesBtn { background-color: #ff4d6d; color: white; z-index: 100; }
         #noBtn { background-color: #888; color: white; }
 
-        /* Адаптивно сърце за мобилни устройства */
+        /* ПЕРФЕКТНО ЦЕНТРИРАНО СЪРЦЕ И ТЕКСТ */
         #loveWindow {
-            display: none;
+            display: none; /* Ще се промени на 'grid' чрез JS */
             position: fixed;
             top: 50%;
             left: 50%;
@@ -79,29 +69,19 @@
             background-color: #ff4d6d;
             clip-path: url(#heart-shape);
             
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding-bottom: 12%; 
+            /* Използваме Grid за перфектно центриране на текста */
+            place-items: center; 
+            align-content: center;
             
             color: white;
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             font-weight: bold;
             z-index: 1000;
-            animation: beat 0.8s infinite alternate, fadeIn 0.5s;
-        }
-
-        @media (min-width: 600px) {
-            h1 { font-size: 2.2rem; }
-            #loveWindow { font-size: 2rem; }
+            animation: beat 0.8s infinite alternate;
         }
 
         @keyframes beat {
-            to { transform: translate(-50%, -50%) scale(1.05); }
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; } to { opacity: 1; }
+            to { transform: translate(-50%, -50%) scale(1.08); }
         }
 
         .heart-bg {
@@ -110,12 +90,11 @@
             animation: float 5s linear infinite;
             opacity: 0.5;
             z-index: 1;
-            pointer-events: none;
         }
 
         @keyframes float {
-            0% { transform: translateY(110vh) rotate(0deg); opacity: 1; }
-            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+            0% { transform: translateY(110vh); opacity: 1; }
+            100% { transform: translateY(-10vh); opacity: 0; }
         }
     </style>
 </head>
@@ -146,10 +125,8 @@
         function growYes() {
             const yesBtn = document.getElementById('yesBtn');
             const noBtn = document.getElementById('noBtn');
-            
             yesSize += 0.4;
             paddingVar += 8;
-            
             yesBtn.style.fontSize = yesSize + "rem";
             yesBtn.style.padding = paddingVar + "px " + (paddingVar * 1.5) + "px";
 
@@ -164,14 +141,14 @@
                 yesBtn.style.display = "flex";
                 yesBtn.style.justifyContent = "center";
                 yesBtn.style.alignItems = "center";
-                yesBtn.innerHTML = "ДА"; 
+                yesBtn.innerHTML = "ДА";
             }
         }
 
         function showLove() {
             document.getElementById('mainBox').style.display = 'none';
             const loveWin = document.getElementById('loveWindow');
-            loveWin.style.display = 'flex';
+            loveWin.style.display = 'grid'; // Променено на grid за центриране
         }
 
         function createHeart() {
