@@ -2,17 +2,22 @@
 <html lang="bg">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Специален въпрос ❤️</title>
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&display=swap" rel="stylesheet">
     <style>
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
         body {
             margin: 0;
             padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
             background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
             font-family: 'Comfortaa', cursive;
             overflow: hidden;
@@ -21,67 +26,78 @@
 
         .container {
             background: rgba(255, 255, 255, 0.85);
-            padding: 40px;
+            padding: 30px;
             border-radius: 20px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             z-index: 10;
-            max-width: 90%;
+            width: 90%;
+            max-width: 400px;
             transition: all 0.3s ease;
         }
 
-        h1 { color: #d63384; font-size: 2rem; margin-bottom: 30px; }
+        h1 { 
+            color: #d63384; 
+            font-size: 1.8rem; 
+            margin-bottom: 30px;
+            line-height: 1.4;
+        }
 
         .buttons {
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 20px;
+            gap: 15px;
             flex-wrap: wrap;
         }
 
         .btn {
             border: none;
             padding: 15px 30px;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             border-radius: 50px;
             cursor: pointer;
             transition: all 0.2s ease;
             font-weight: bold;
             font-family: 'Comfortaa', cursive;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
 
         #yesBtn { background-color: #ff4d6d; color: white; z-index: 100; }
         #noBtn { background-color: #888; color: white; }
 
-        /* Прозорецът-сърце с центриран текст */
+        /* Адаптивно сърце за мобилни устройства */
         #loveWindow {
             display: none;
             position: fixed;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 350px;
-            height: 350px;
+            width: 80vw;
+            height: 80vw;
+            max-width: 350px;
+            max-height: 350px;
             background-color: #ff4d6d;
             clip-path: url(#heart-shape);
             
-            /* Центриране на текста вътре */
-            display: none; 
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding-bottom: 40px; /* Леко отместване нагоре, за да изглежда визуално центрирано в "корема" на сърцето */
-            box-sizing: border-box;
+            padding-bottom: 12%; 
             
             color: white;
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             font-weight: bold;
             z-index: 1000;
             animation: beat 0.8s infinite alternate, fadeIn 0.5s;
         }
 
+        @media (min-width: 600px) {
+            h1 { font-size: 2.2rem; }
+            #loveWindow { font-size: 2rem; }
+        }
+
         @keyframes beat {
-            to { transform: translate(-50%, -50%) scale(1.1); }
+            to { transform: translate(-50%, -50%) scale(1.05); }
         }
 
         @keyframes fadeIn {
@@ -94,10 +110,11 @@
             animation: float 5s linear infinite;
             opacity: 0.5;
             z-index: 1;
+            pointer-events: none;
         }
 
         @keyframes float {
-            0% { transform: translateY(100vh) rotate(0deg); opacity: 1; }
+            0% { transform: translateY(110vh) rotate(0deg); opacity: 1; }
             100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
         }
     </style>
@@ -123,20 +140,20 @@
     <div id="loveWindow">ОБИЧАМ ТЕ!</div>
 
     <script>
-        let yesSize = 1.2;
+        let yesSize = 1.1;
         let paddingVar = 15;
 
         function growYes() {
             const yesBtn = document.getElementById('yesBtn');
             const noBtn = document.getElementById('noBtn');
             
-            yesSize += 0.5;
-            paddingVar += 10;
+            yesSize += 0.4;
+            paddingVar += 8;
             
             yesBtn.style.fontSize = yesSize + "rem";
-            yesBtn.style.padding = paddingVar + "px " + (paddingVar * 2) + "px";
+            yesBtn.style.padding = paddingVar + "px " + (paddingVar * 1.5) + "px";
 
-            if (yesSize > 5) {
+            if (yesSize > 4) {
                 noBtn.style.display = "none";
                 yesBtn.style.width = "100vw";
                 yesBtn.style.height = "100vh";
@@ -144,6 +161,9 @@
                 yesBtn.style.top = "0";
                 yesBtn.style.left = "0";
                 yesBtn.style.borderRadius = "0";
+                yesBtn.style.display = "flex";
+                yesBtn.style.justifyContent = "center";
+                yesBtn.style.alignItems = "center";
                 yesBtn.innerHTML = "ДА"; 
             }
         }
@@ -159,12 +179,12 @@
             heart.classList.add('heart-bg');
             heart.innerHTML = '❤️';
             heart.style.left = Math.random() * 100 + 'vw';
-            heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
-            heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+            heart.style.animationDuration = (Math.random() * 2 + 3) + 's';
+            heart.style.fontSize = (Math.random() * 15 + 15) + 'px';
             document.body.appendChild(heart);
             setTimeout(() => { heart.remove(); }, 5000);
         }
-        setInterval(createHeart, 300);
+        setInterval(createHeart, 400);
     </script>
 </body>
 </html>
