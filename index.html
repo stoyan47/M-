@@ -55,29 +55,35 @@
         #yesBtn { background-color: #ff4d6d; color: white; z-index: 100; }
         #noBtn { background-color: #888; color: white; }
 
-        /* ПЕРФЕКТНО ЦЕНТРИРАНО СЪРЦЕ И ТЕКСТ */
+        /* Прозорецът-сърце с ОПТИЧЕСКО центриране */
         #loveWindow {
-            display: none; /* Ще се промени на 'grid' чрез JS */
+            display: none; 
             position: fixed;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 80vw;
-            height: 80vw;
-            max-width: 350px;
-            max-height: 350px;
+            width: 85vw;
+            height: 85vw;
+            max-width: 380px;
+            max-height: 380px;
             background-color: #ff4d6d;
             clip-path: url(#heart-shape);
             
-            /* Използваме Grid за перфектно центриране на текста */
-            place-items: center; 
-            align-content: center;
+            /* Центриране */
+            display: none; 
+            justify-content: center;
+            align-items: center;
             
             color: white;
-            font-size: 1.6rem;
+            font-size: 1.8rem;
             font-weight: bold;
             z-index: 1000;
             animation: beat 0.8s infinite alternate;
+        }
+
+        /* Текстът вътре в сърцето - леко изместен нагоре за визуален баланс */
+        #loveText {
+            margin-bottom: 15%; 
         }
 
         @keyframes beat {
@@ -116,7 +122,9 @@
         </div>
     </div>
 
-    <div id="loveWindow">ОБИЧАМ ТЕ!</div>
+    <div id="loveWindow">
+        <span id="loveText">ОБИЧАМ ТЕ!</span>
+    </div>
 
     <script>
         let yesSize = 1.1;
@@ -148,7 +156,7 @@
         function showLove() {
             document.getElementById('mainBox').style.display = 'none';
             const loveWin = document.getElementById('loveWindow');
-            loveWin.style.display = 'grid'; // Променено на grid за центриране
+            loveWin.style.display = 'flex';
         }
 
         function createHeart() {
